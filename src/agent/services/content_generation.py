@@ -1,8 +1,15 @@
+import logging
 from typing import List
-from pydantic import BaseModel, Field
+
 from langchain_core.prompts import ChatPromptTemplate
-from llm_model import _make_llm_with_structure
-from agent.services.insights_extract import AllStrategicInsights
+from pydantic import BaseModel, Field
+
+from .config import CONTENT_LLM_TEMPERATURE, DEFAULT_LLM_MODEL
+from .insights_extract import AllStrategicInsights
+from .llm_model import _make_llm_with_structure
+
+logger = logging.getLogger(__name__)
+
 
 class MarketingContent(BaseModel):
     insight_id: str = Field(..., description="Matches the ID from the source insight")
@@ -14,13 +21,14 @@ class MarketingContent(BaseModel):
     distribution_channel: List[str] = Field(..., description="Recommended channels, e.g., ['LinkedIn', 'Twitter']")
     sources: List[str] = Field(..., description="Reference IDs or links used")
 
+
 class AllMarketingContents(BaseModel):
     contents: List[MarketingContent]
 
-content_llm = _make_llm_with_structure(AllMarketingContents, "gpt-5-nano", 0.7)
 
-CONTENT_PROMPT = ChatPromptTemplate.from_template("""
-    You are an expert Marketing Strategist. 
+CONTENT_PROMPT = ChatPromptTemplate.from_template(
+    """
+    You are an expert Marketing Strategist.
     Generate concrete, ready-to-publish marketing content based on the following strategic insights.
 
     For each insight:
@@ -30,19 +38,30 @@ CONTENT_PROMPT = ChatPromptTemplate.from_template("""
 
     Strategic Insights to process:
     {insights}
-    """)
+    """
+)
+
+# Lazy-initialized chain — created on first call to avoid eager API key validation
+# at import time and to simplify test mocking.
+_chain = None
+
+
+def _get_chain():
+    global _chain
+    if _chain is None:
+        llm = _make_llm_with_structure(AllMarketingContents, DEFAULT_LLM_MODEL, CONTENT_LLM_TEMPERATURE)
+        _chain = CONTENT_PROMPT | llm
+    return _chain
+
 
 def marketing_content_agent(insights: AllStrategicInsights) -> AllMarketingContents:
-
     formatted_insights = "\n".join(
         f"ID: {i.insight_id} | Insight: {i.key_insight_content} | Relevance: {i.strategic_relevance}"
         for i in insights.insights
     )
 
-    chain = CONTENT_PROMPT | content_llm
-
-    res = chain.invoke({"insights": formatted_insights})
+    res = _get_chain().invoke({"insights": formatted_insights})
 
     if isinstance(res, AllMarketingContents):
         return res
-    return AllMarketingContents(**res) if isinstance(res, dict) else res
+    return AllMarketingContents(**res)

@@ -1,8 +1,8 @@
 # A Multi-Agent Intelligent Marketing System
 
-This repository presents Version 3.0 of a multi-agent intelligent marketing system that implements a closed-loop, end-to-end automation pipeline for marketing intelligence and content operations. The system integrates retrieval-augmented generation (RAG), structured multi-agent orchestration, and human-in-the-loop (HITL) validation to support reliable insight extraction, content generation, automated publishing, and post-publication performance analysis.
+This repository presents the newest version of a multi-agent intelligent marketing system that implements a closed-loop, end-to-end automation pipeline for marketing intelligence and content operations. The system integrates retrieval-augmented generation (RAG), structured multi-agent orchestration, and human-in-the-loop (HITL) validation to support reliable insight extraction, content generation, automated publishing, and post-publication performance analysis.
 
-Built upon LangChain and LangGraph, the proposed architecture emphasizes modularity, grounding, and extensibility, enabling controlled large language model (LLM) deployment in real-world marketing workflows. Compared with earlier versions, this iteration focuses on architectural optimization, explicit agent responsibility boundaries, and improved reproducibility.
+Built upon LangChain and LangGraph, the proposed architecture emphasizes modularity, grounding, and extensibility, enabling controlled large language model (LLM) deployment in real-world marketing workflows. Compared with earlier iterations, this version introduces architectural optimizations, clearer agent responsibility boundaries, and enhanced reproducibility. It also incorporates comprehensive logging services, unit and integration testing frameworks, and robust retry/backoff mechanisms across all agents to improve reliability, observability, and fault tolerance in production-ready environments.
 
 ---
 
@@ -108,17 +108,34 @@ Version 3.0 prioritizes architectural clarity and experimental reproducibility. 
 ## Implementation Details
 ### **Technology Stack**
 
-- Python 3.12.7
-
+- python 3.12.7
 - chromadb 1.4.1
-
+- langchain_community 0.4.1
+- langchain_core 1.2.9
+- langchain_openai 1.1.8
+- langchain_text_splitters 1.1.0
 - langchain 1.2.8
-
-- langchain-openai 1.1.7
-
+- langchain-openai 1.1.8
 - langgraph 1.0.7
-
 - openai 2.17.0
+- pydantic 2.8.2
+- python-dotenv 1.2.2
+- requests 2.32.5
+- tenacity 8.2.3
+
+### **How to Test**
+- Install the project dependencies using:
+   pip install -e .
+   (Recommended for development environments)
+- Alternatively, install dependencies from the requirements file:
+   pip install -r requirements.txt
+- Run all unit tests:
+   pytest tests/unit_tests/
+- Run all integration tests:
+   pytest tests/integration_tests/
+- To test the orchestration workflow independently, run:
+   python run_agents_separately.py
+   When prompted, enter `1` to select the default workflow. You may also modify the query input to evaluate the system on different topics and use cases.
 
 ---
 

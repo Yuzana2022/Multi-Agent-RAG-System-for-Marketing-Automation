@@ -1,0 +1,29 @@
+{
+  "insights": [
+    {
+      "insight_id": "S1",
+      "key_insight_content": "AI is no longer optional for small‑business marketing; adoption is widespread (≈88% using AI tools) and expanding across channels (average of 4.8 AI tools per adopter), with many firms planning to increase AI investments as tools support personalized outreach and efficiency, despite ongoing gaps in skills and metrics.",
+      "strategic_relevance": "Signals that AI-enabled marketing is now foundational for SMB growth. Prioritizing AI capability building, governance, and a multi‑tool ecosystem will enable scalable, personalized marketing with limited staff."
+    },
+    {
+      "insight_id": "S2",
+      "key_insight_content": "Automation and digital tools are essential for saving time and enabling smarter marketing decisions; about 80% of marketers aim to cut time spent on repetitive tasks using AI, with automation spanning pricing, inventory management, email, reporting, and A/B testing, complemented by real‑time dashboards that integrate data from ads, websites, email, and social channels.",
+      "strategic_relevance": "Automation accelerates execution and frees strategic capacity. Invest in integrated automation platforms and analytics skills to improve efficiency, profitability, and data‑driven decision making."
+    },
+    {
+      "insight_id": "S3",
+      "key_insight_content": "Local SEO and hyperlocal marketing remain foundational in 2026, expanding to local discovery across search, maps, social, and AI‑generated answers; 32% of Americans look up local business info daily, with emphasis on accurate NAP listings, localized keywords, location pages, and structured data, plus reputation signals like reviews (83% use Google reviews; 89% are more likely to transact with a business that responds to reviews).",
+      "strategic_relevance": "Capturing high‑intent local traffic requires strong local signals and reputation management. Invest in local data accuracy, SEO localization, and proactive review engagement to sustain growth from nearby customers."
+    },
+    {
+      "insight_id": "S4",
+      "key_insight_content": "Social media marketing is a core channel accelerated by AI‑generated content, influencer collaborations, and in‑platform shopping; 83% of marketers are confident in social ad ROI, influencer marketing is growing (consumers often buy after seeing influencer use), and social commerce could exceed $1 trillion globally by 2028, with Gen Z increasingly using TikTok as a search tool and short‑form video dominating.",
+      "strategic_relevance": "Leverage AI‑driven content creation and creator partnerships to amplify reach and conversions, while embedding in‑platform shopping. Ensure compliance and measurement across social channels to maximize ROI."
+    },
+    {
+      "insight_id": "S5",
+      "key_insight_content": "Data‑driven decision making and analytics maturity are rising: real‑time dashboards and multi‑source data integration support faster, informed decisions; 64% see big data as a competitive advantage, 23% are confident they track the right metrics, and around 80% aim to reduce repetitive work with AI.",
+      "strategic_relevance": "Develop mature analytics, data governance, and outcome‑oriented metrics to translate data into growth. Align AI/tool adoption with strategic goals and cross‑channel measurement to realize tangible business benefits."
+    }
+  ]
+}
